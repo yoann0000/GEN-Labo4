@@ -58,22 +58,12 @@ public class OrdersWriter {
     }
 
     private String getSizeFor(Product product) {
-        switch (product.getSize()) {
-            case 1:
-                return "XS";
-            case 2:
-                return "S";
-            case 3:
-                return "M";
-            case 4:
-                return "L";
-            case 5:
-                return "XL";
-            case 6:
-                return "XXL";
-            default:
-                return "Invalid Size";
-        }
+        String[] sizes = {"Invalid size", "XS", "S", "M", "L", "XL"};
+        
+        if(product.getSize() >= 1 && product.getSize() <=6)
+            return sizes[product.getSize()];
+        else
+            return sizes[0];
     }
 
     private String getColorFor(Product product) {
