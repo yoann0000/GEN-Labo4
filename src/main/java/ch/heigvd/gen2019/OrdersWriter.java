@@ -22,9 +22,7 @@ public class OrdersWriter {
             printProducts(sb, order);
             sb.append("}, ");
         }
-        if (orders.getOrdersCount() > 0) {
-            sb.delete(sb.length() - 2, sb.length());
-        }
+        removeComma(sb, orders.getOrdersCount());
     }
 
     private void printProducts(StringBuilder sb, Order order) {
@@ -35,9 +33,7 @@ public class OrdersWriter {
             sb.append(", ");
         }
 
-        if (order.getProductsCount() > 0) {
-            sb.delete(sb.length() - 2, sb.length());
-        }
+        removeComma(sb, order.getProductsCount());
         sb.append("]");
     }
 
@@ -78,6 +74,12 @@ public class OrdersWriter {
         sb.append("\"code\": \"").append(product.getCode()).append("\", ");
     }
 
+    private void removeComma(StringBuilder sb, int ordersCount) {
+        if (ordersCount > 0) {
+            sb.delete(sb.length() - 2, sb.length());
+        }
+    }
+    
     private String getSizeFor(Product product) {
         String[] sizes = {"Invalid size", "XS", "S", "M", "L", "XL"};
         
