@@ -16,8 +16,7 @@ public class OrdersWriter {
     }
 
     private void printOrders(StringBuilder sb, List<Order> orders) {
-        for (int i = 0; i < orders.size(); i++) {
-            Order order = orders.get(i);
+        for (Order order : orders) {
             sb.append("{");
             printOrderId(sb, order);
             sb.append(", ");
