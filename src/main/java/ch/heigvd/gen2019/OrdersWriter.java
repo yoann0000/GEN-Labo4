@@ -45,19 +45,18 @@ public class OrdersWriter {
 
     private void printProduct(StringBuilder sb, Order.Product product) {
         sb.append("{");
+
         printProductCode(sb, product);
         printProductColor(sb, product);
-
-        if (product.getSize() != Order.Product.SIZE_NOT_APPLICABLE) {
-            printProductSize(sb, product);
-        }
-
+        printProductSize(sb, product);
         printProductPrice(sb, product);
         printProductCurrency(sb, product);
+
+        sb.append("}");
     }
 
     private void printProductCurrency(StringBuilder sb, Order.Product product) {
-        sb.append("\"currency\": \"").append(product.getCurrency()).append("\"}");
+        sb.append("\"currency\": \"").append(product.getCurrency()).append("\"");
     }
 
     private void printProductPrice(StringBuilder sb, Order.Product product) {
@@ -65,7 +64,9 @@ public class OrdersWriter {
     }
 
     private void printProductSize(StringBuilder sb, Order.Product product) {
-        sb.append("\"size\": \"").append(getSizeFor(product)).append("\", ");
+        if (product.getSize() != Order.Product.SIZE_NOT_APPLICABLE) {
+            sb.append("\"size\": \"").append(getSizeFor(product)).append("\", ");
+        }
     }
 
     private void printProductColor(StringBuilder sb, Order.Product product) {
