@@ -1,9 +1,11 @@
 package ch.heigvd.gen2019;
 
-public class OrdersWriter {
-    private Orders orders;
+import java.util.List;
 
-    public OrdersWriter(Orders orders) {
+public class OrdersWriter {
+    private List<Order> orders;
+
+    public OrdersWriter(List<Order> orders) {
         this.orders = orders;
     }
 
@@ -13,16 +15,16 @@ public class OrdersWriter {
         return sb.append("]}").toString();
     }
 
-    private void printOrders(StringBuilder sb, Orders orders) {
-        for (int i = 0; i < orders.getOrdersCount(); i++) {
-            Order order = orders.getOrder(i);
+    private void printOrders(StringBuilder sb, List<Order> orders) {
+        for (int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
             sb.append("{");
             printOrderId(sb, order);
             sb.append(", ");
             printProducts(sb, order);
             sb.append("}, ");
         }
-        removeComma(sb, orders.getOrdersCount());
+        removeComma(sb, orders.size());
     }
 
     private void printProducts(StringBuilder sb, Order order) {
